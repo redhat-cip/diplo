@@ -1,0 +1,4 @@
+conf/*.list
+conf/*.cfg
+workspace/*
+plugins/*

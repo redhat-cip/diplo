@@ -1,4 +1,4 @@
 diplo
 =====
 
-bash framework for DevOPS
+BASH framework for DevOPS
