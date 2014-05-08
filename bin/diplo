@@ -1,55 +1,58 @@
 #!/bin/bash
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+if [ ! -f $DIR/conf/diplo.cfg ]
+then
+	echo "Diplo config file $DIR/conf/diplo.cfg is missing"
+	exit 1
+fi
 
-function usage() {
-	echo "Usage : diplo <action> <params>"
-	echo ""
-	echo "------- Basic diplo Actions -------"
-	echo "  create        Create a new Project"
-	echo "  import        Import an existing Project"
-	echo "  list-plugins  List all offical Plugins"
-	echo "  install       Install a specific Plugin"
-	echo "  help	      Show this message"
-	for i in `ls -1 $DIR/../plugins`
-	do
-		if [ -f $DIR/../plugins/$i/init ]
-		then
-			source $DIR/../plugins/$i/init
-			${i}_help
-		fi
-	done
-}
+source $DIR/conf/diplo.cfg
 
-function validate() {
-	cmd=$1
-	CLIENT=`echo $2 | awk -F'.' '{print $1}'`
-	PROJECT=`echo $2 | awk -F'.' '{print $2}'`
-	shift
-	shift
-	if [ -d $DIR/../workspace/$CLIENT/$PROJECT ]
-	then
-		
-		$cmd $CLIENT $PROJECT $@
-	else
-		echo "Project does not exist"
-	fi
-}
+if [ ! -z $WORKSPACEDIR ]
+then
+	WORKSPACEDIR="$DIR/workspace"
+fi
+
+LIBDIR=$DIR/lib
 
 command=$1
 shift
-
 case $command in
-	deploy) 
-		validate deploy $@
+	create)
+		source $LIBDIR/workspace.bash
+		create $@
 		;;
-	destroy ) 
-		validate destroy $@
+	import)
+		source $LIBDIR/workspace.bash
+		import $@
 		;;
-	cmd )
-		validate exec_cmd $@
+	go)
+		source $LIBDIR/workspace.bash
+		go $@
 		;;
-	* ) 
-		usage
+	update)
+		source $LIBDIR/base.bash
+		update $@
+		;;
+	list-plugins)
+		source $LIBDIR/plugins.bash
+		list-plugins
+		;;
+	install)
+		source $LIBDIR/plugins.bash
+		pinstall $@
+		;;
+	update-plugin)
+		source $LIBDIR/plugins.bash
+		pupdate $@
+		;;
+	help)
+		source $LIBDIR/base.bash
+		usage $@
+		;;
+	*)
+		source $LIBDIR/plugins.bash
+		validate $command $@
 		;;
 esac
