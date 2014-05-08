@@ -1,3 +1,5 @@
 #!/bin/bash
 
-
+git clone https://github.com/Prophidys/diplo.git /usr/local/diplo
+cp /usr/local/diplo/conf/plugins.list.sample /usr/local/diplo/conf/plugins.list
+cp /usr/local/diplo/conf/workspaces.list.sample /usr/local/diplo/conf/workspaces.list
