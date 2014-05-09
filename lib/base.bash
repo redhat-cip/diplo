@@ -23,3 +23,9 @@ function usage() {
         done
 }
 
+function update() {
+	echo "Update in progress"
+	cd $DIR
+	git pull
+	echo "Update is done"
+}
