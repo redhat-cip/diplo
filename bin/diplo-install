@@ -1,5 +1,12 @@
 #!/bin/bash
 
-git clone https://github.com/Prophidys/diplo.git /usr/local/diplo
-cp /usr/local/diplo/conf/plugins.list.sample /usr/local/diplo/conf/plugins.list
-cp /usr/local/diplo/conf/workspaces.list.sample /usr/local/diplo/conf/workspaces.list
+if [ ! -d /usr/local/diplo ]
+then
+	git clone https://github.com/Prophidys/diplo.git /usr/local/diplo
+	cp /usr/local/diplo/conf/plugins.list.sample /usr/local/diplo/conf/plugins.list
+	cp /usr/local/diplo/conf/workspaces.list.sample /usr/local/diplo/conf/workspaces.list
+	cp /usr/local/diplo/conf/diplo.cfg.sample /usr/local/diplo/conf/diplo.cfg
+else
+	echo "diplo is already installed, please use \"diplo udate\" or rm the diplo dir"
+	exit 1
+fi
