@@ -3,9 +3,9 @@
 if [ ! -d ~/.diplo ]
 then
 	git clone https://github.com/Prophidys/diplo.git ~/.diplo
-	cp ~./diplo/conf/plugins.list.sample ~./diplo/conf/plugins.list
-	cp ~./diplo/conf/workspaces.list.sample ~./diplo/conf/workspaces.list
-	cp ~./diplo/conf/diplo.cfg.sample ~./diplo/conf/diplo.cfg
+	cp ~/.diplo/conf/plugins.list.sample ~/.diplo/conf/plugins.list
+	cp ~/.diplo/conf/workspaces.list.sample ~/.diplo/conf/workspaces.list
+	cp ~/.diplo/conf/diplo.cfg.sample ~/.diplo/conf/diplo.cfg
 else
 	echo "diplo is already installed, please use \"diplo udate\" or rm the diplo dir"
 	exit 1
