@@ -27,6 +27,10 @@ case $command in
 		source $LIBDIR/workspace.bash
 		import $@
 		;;
+	list)
+		source $LIBDIR/workspace.bash
+		list $@
+		;;
 	go)
 		source $LIBDIR/workspace.bash
 		go $@

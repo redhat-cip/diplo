@@ -6,6 +6,7 @@ function usage() {
         echo ""
         echo "------- Basic Diplo Actions -------"
         echo "  create        Create a new workspace"
+	echo "  list          List all workspaces available"
         echo "  import        Import an existing workspace"
         echo "  go            execute a command on your workspace"
         echo "  update        Update diplo to the latest version"
