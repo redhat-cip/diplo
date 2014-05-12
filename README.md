@@ -18,7 +18,7 @@ Via wget :
 
 And be sure diplo is in your PATH :
 
-    export PATH=$PATH:/usr/local/diplo/bin
+    export PATH=$PATH:$HOME/.diplo/bin
 
 Howto Use Diplo ?
 -----------------
