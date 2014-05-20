@@ -5,10 +5,17 @@ function validate() {
 	workspace=$2
         shift
         shift
-        if [ -d $workspace ]
-        then
-
-                $cmd $workspace $@
+        if [ -d $DIR/workspaces/$workspace ]
+	then
+		if [ -f $DIR/plugins/$cmd/main.bash ]
+		then
+			source $DIR/plugins/$cmd/main.bash
+			func=$1
+			shift
+			$func $workspace $@
+		else
+			echo "Can't load plugin"
+		fi
         else
                 echo "Project does not exist"
         fi
