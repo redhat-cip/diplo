@@ -10,11 +10,11 @@ Just execute the following command
 
 Via curl :
     
-    curl -sL https://raw.githubusercontent.com/Prophidys/diplo/master/bin/install-diplo | bash
+    curl -sL https://raw.githubusercontent.com/enovance/diplo/master/bin/install-diplo | bash
 
 Via wget :
     
-    wget https://raw.githubusercontent.com/Prophidys/diplo/master/bin/install-diplo -O - | bash
+    wget https://raw.githubusercontent.com/enovance/diplo/master/bin/install-diplo -O - | bash
 
 And be sure diplo is in your PATH :
 
