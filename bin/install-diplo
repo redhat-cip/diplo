@@ -7,6 +7,6 @@ then
 	cp ~/.diplo/conf/workspaces.list.sample ~/.diplo/conf/workspaces.list
 	cp ~/.diplo/conf/diplo.cfg.sample ~/.diplo/conf/diplo.cfg
 else
-	echo "diplo is already installed, please use \"diplo udate\" or rm the diplo dir"
+	echo "Diplo is already installed, please use \"diplo update\" or rm the diplo dir"
 	exit 1
 fi
