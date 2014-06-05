@@ -10,15 +10,28 @@ function import() {
 			local git=`echo $j | awk -F';' '{print $2}'`
 			if [ $name == $1 ]
 			then
-				cd $DIR/workspaces
-				git clone $git $name
-				echo "Workspace $name imported"
-				exit 0
+				if [ -d $DIR/workspaces/$name ]
+				then
+					error "Workspace already present"
+					exit 1
+				else
+					cd $DIR/workspaces
+					git clone $git $name
+					RETCODE=$?
+					if [ $RETCODE -ne 0 ]
+					then
+						error "Some problem to import $name"
+						exit 1	
+					else
+						info "Workspace $name imported"
+						exit 0
+					fi
+				fi
 			fi
                 done
         done
 	set +f; unset IFS
-	echo "workspace not found"
+	error "workspace not found"
 	exit 1
 }
 
@@ -58,4 +71,9 @@ function go() {
 	shift
 	shift
 	$cmd $@	
+}
+
+function create() {
+	error "Not yet implemented"
+	exit 1
 }

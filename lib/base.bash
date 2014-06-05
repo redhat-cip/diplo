@@ -1,8 +1,8 @@
 #!/bin/bash
 
 function usage() {
-        echo "Diplo Version : alpha~0.0.1"
-        echo "Usage : diplo <action> <params>"
+        echo "Diplo Version : `cat $DIR/conf/diplo_version`"
+        echo "Usage : diplo <action> [<params>]"
         echo ""
         echo "------- Basic Diplo Actions -------"
         echo "  create        Create a new workspace"
@@ -25,8 +25,8 @@ function usage() {
 }
 
 function update() {
-	echo "Update in progress"
+	info "Update in progress"
 	cd $DIR
 	git pull
-	echo "Update is done"
+	info "Update is done"
 }

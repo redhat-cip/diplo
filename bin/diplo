@@ -1,9 +1,14 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+LIBDIR=$DIR/lib
+
+source $LIBDIR/default.bash
+
+
 if [ ! -f $DIR/conf/diplo.cfg ]
 then
-	echo "Diplo config file $DIR/conf/diplo.cfg is missing"
+	error "Diplo config file $DIR/conf/diplo.cfg is missing"
 	exit 1
 fi
 
@@ -14,7 +19,13 @@ then
 	WORKSPACEDIR="$DIR/workspace"
 fi
 
-LIBDIR=$DIR/lib
+if [ $# -lt 1 ]
+then
+	info "Parameters require \n"
+	source $LIBDIR/base.bash
+        usage
+	exit 1
+fi
 
 command=$1
 shift

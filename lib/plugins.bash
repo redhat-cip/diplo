@@ -2,23 +2,48 @@
 
 function validate() {
         cmd=$1
-	workspace=$2
-        shift
-        shift
-        if [ -d $DIR/workspaces/$workspace ]
+	if [ ! -z $2 ] && [ $2 == "status" ]
 	then
 		if [ -f $DIR/plugins/$cmd/main.bash ]
-		then
-			source $DIR/plugins/$cmd/main.bash
-			func=$1
-			shift
-			$func $workspace $@
+                then
+                	source $DIR/plugins/$cmd/main.bash
+			status
+			exit 0
 		else
-			echo "Can't load plugin"
+			error "Can't load the plugin"
+			exit 1
 		fi
-        else
-                echo "Project does not exist"
-        fi
+	fi
+	if [ ! -z $2 ]
+	then
+		workspace=$2
+        	shift
+        	shift
+        	if [ -d $DIR/workspaces/$workspace ]
+		then
+			if [ -f $DIR/plugins/$cmd/main.bash ]
+			then
+				source $DIR/plugins/$cmd/main.bash
+				func=$1
+				shift
+				$func $workspace $@
+			else
+				error "Can't load plugin"
+				exit 1
+			fi
+        	else
+        	        error "Workspace $workspace does not exist"
+			exit 1
+        	fi
+	else
+		if [ -f $DIR/plugins/$cmd ]
+		then
+			error "Missing parameters, use diplo help"
+		else
+			error "Plugin or command not found"
+		fi
+		exit 1
+	fi
 }
 
 function list-plugins() {
