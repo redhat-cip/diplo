@@ -82,3 +82,21 @@ function pinstall() {
 	echo "Plugin not found"
 	exit 1
 }
+
+function update-plugins() {
+	for i in `ls $DIR/plugins/`
+	do
+		if [ -d $DIR/plugins/$i ]
+		then
+			cd $DIR/plugins/$i
+			git pull
+			RETCODE=$?
+			if [ $RETCODE -ne 0 ]
+			then
+				error "Something going wrong"
+			else
+				info "`basename $i` Successfuly updated"
+			fi
+		fi
+	done
+}
