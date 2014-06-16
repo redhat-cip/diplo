@@ -9,8 +9,5 @@ function error() {
 }
 
 function debug() {
-	if [ $DEBUG -eq 1 ]
-	then
-		echo -e "[\033[1;35mERROR\033[0m] - $@"
-	fi
+	[[ "${DEBUG:-0}" -eq 1 ]] && echo -e "[\033[1;35mDEBUG\033[0m] - $@"
 }
