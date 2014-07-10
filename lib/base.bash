@@ -14,12 +14,13 @@ function usage() {
         echo "  install       Install a specific Plugin"
         echo "  help          Show this message"
         
-	for i in `ls -1 $DIR/plugins`
+	for i in $DIR/plugins/*
         do
-                if [ -f $DIR/plugins/$i/init ]
+                local bi=$(basename $i)
+                if [ -f $i/init ]
                 then
-                        source $DIR/plugins/$i/init
-                        ${i}_help
+                        source $i/init
+                        ${bi}_help
                 fi
         done
 }

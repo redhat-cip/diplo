@@ -84,18 +84,18 @@ function pinstall() {
 }
 
 function update-plugins() {
-	for i in `ls $DIR/plugins/`
+	for i in $DIR/plugins/*
 	do
-		if [ -d $DIR/plugins/$i ]
+		if [ -d $i ]
 		then
-			cd $DIR/plugins/$i
+			cd $i
 			git pull
 			RETCODE=$?
 			if [ $RETCODE -ne 0 ]
 			then
 				error "Something going wrong"
 			else
-				info "`basename $i` Successfuly updated"
+				info "$(basename $i) Successfuly updated"
 			fi
 		fi
 	done
